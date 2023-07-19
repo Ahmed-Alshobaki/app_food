@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:food/features/onBoarding/onboarding1.dart';
+import 'package:get/get.dart';
 
+import '../../../core/utils/Size1.dart';
 class splash_bade extends StatefulWidget {
   const splash_bade({super.key});
 
@@ -8,6 +11,7 @@ class splash_bade extends StatefulWidget {
 }
 
 class _splash_badeState extends State<splash_bade> with SingleTickerProviderStateMixin {
+
   AnimationController ? animationController;
   Animation ? animation;
   @override
@@ -18,9 +22,11 @@ class _splash_badeState extends State<splash_bade> with SingleTickerProviderStat
     animation =Tween<double>(begin: 0.2,end: 1).animate(animationController!);
     animationController!.repeat(reverse: true);
     animationController!.forward();
+    goNextoview();
   }
   @override
   Widget build(BuildContext context) {
+    Size1().init(context);
     return  Container(
         alignment: Alignment.center,
       child: Column(
@@ -64,5 +70,12 @@ class _splash_badeState extends State<splash_bade> with SingleTickerProviderStat
         ],
       ),
     );
+  }
+
+  void goNextoview() {
+    Future.delayed(const Duration(seconds: 3),(){
+    Get.to(()=>onboarding(),transition: Transition.fade);
+
+    });
   }
 }
